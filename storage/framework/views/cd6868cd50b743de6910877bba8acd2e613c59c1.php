@@ -3,9 +3,13 @@
     <?php $__currentLoopData = $UserProductMobile; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $UserMobile): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
     <div class="col-md-2 p-5 ">
         <div class="card" style="width: 10rem;">
-            <img class="card-img-top"
+            <!-- <img class="card-img-top"
                 src="http://localhost/product_show/storage/app/public/SellerProductImages/<?php echo e($UserMobile->product_image); ?>"
-                height="100px" width="100px">
+                height="100px" width="100px"> -->
+            <?php 
+                            $image_file_path = env('IMAGE_PATH');
+                            ?>
+            <img src="<?php echo e($image_file_path); ?>/<?php echo e($UserMobile->product_image); ?>" alt="">
             <div class="card-body">
                 <p class="card-text"><b> <?php echo e($UserMobile->product_name); ?></b></p>
                 <p class="card-text"><b> <?php echo e($UserMobile->product_price); ?></b></p>

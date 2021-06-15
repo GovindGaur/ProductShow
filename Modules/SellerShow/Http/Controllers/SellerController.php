@@ -22,7 +22,7 @@ class SellerController extends Controller
       $user= Sellerlogin::where(['email' => $req->email])->first();
       
       if (!$user || !Hash::check($req->password, $user->password)) {
-        return redirect('/');
+        return redirect('/Sellerlogin');
     } else {
             $req->session()->put('seller', $user);
         return redirect('/dashboard');
@@ -37,7 +37,7 @@ class SellerController extends Controller
             $user->mobile_number = $req->mobilenumber;    
             $user->password = Hash::make($req->password);   
             $user->save();
-            return redirect('/'); 
+            return redirect('/Sellerlogin'); 
     
     }
 

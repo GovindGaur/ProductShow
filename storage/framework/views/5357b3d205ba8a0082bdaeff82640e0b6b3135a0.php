@@ -14,7 +14,6 @@
                     <h5><?php echo e($item->product_price); ?></h5>
                     <p><?php echo e($item->product_desc); ?></p>
                 </div>
-
             </div>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 

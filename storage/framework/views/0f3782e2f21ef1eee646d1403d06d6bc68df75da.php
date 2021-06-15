@@ -353,8 +353,11 @@
         </script>
         <!-- AdminLTE App -->
         <!-- <script src="http://localhost/product_show/Modules/SellerShow/Resources/assets/js/adminlte.min.js"></script> -->
+        <script src="<?php echo e(Module::asset('SellerShow:js/adminlte.min.js')); ?>"></script>
         <!-- AdminLTE for demo purposes -->
-        <script src="http://localhost/product_show/Modules/SellerShow/Resources/assets/js/demo.js"></script>
+        <!-- <script src="http://localhost/product_show/Modules/SellerShow/Resources/assets/js/demo.js"></script> -->
+        <script src="<?php echo e(Module::asset('SellerShow:js/demo.js')); ?>"></script>
+
 </body>
 
 </html><?php /**PATH G:\xampp\htdocs\Product_show\Modules/SellerShow\Resources/views/seller_header.blade.php ENDPATH**/ ?>

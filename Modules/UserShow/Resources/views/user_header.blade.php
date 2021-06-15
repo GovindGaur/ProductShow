@@ -68,8 +68,16 @@
                         @csrf
                         <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search"
                             aria-label="Search">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                            <i class="fa fa-search"></i>
+                        </button>
                     </form>
+
+                    <div class="user_option-box">
+                        <a href="">
+                            <i class="fa fa-cart-plus" aria-hidden="true" style="margin-left: 73px;"></i>
+                        </a>
+                    </div>
                 </ul>
                 @if(Session()->has('user'))
                 <div class="user_option-box">
@@ -83,89 +91,17 @@
                     </a>
                     @else
                     <a href="Userloginshow">
-                        login
+                        <i class="fa fa-user" aria-hidden="true"></i>
                     </a>
-
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" href="/Userloginshow"> login </a>
-                    </li> -->
                     @endif
                 </div>
             </div>
-            <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class=""> </span>
-            </button>
-
-            <div class="collapse navbar-collapse visible-lg" id="navbarSupportedContent">
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/FetchAllProduct">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="about.html"> About </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact Us</a>
-                    </li>
-
-                    @if(Session()->has('user'))
-
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/FetchAllProduct">Product <span class="sr-only">(current)</span></a>
-                    </li>
-                    <div class="user_option-box">
-                        <a href="">
-                            <i class="fa fa-user" aria-hidden="true"></i>
-                        </a>
-                        <a href="">
-                            <i class="fa fa-cart-plus" aria-hidden="true"></i>
-                        </a>
-                        <a href="">
-                            <i class="fa fa-search" aria-hidden="true"></i>
-                        </a>
-                    </div>
-                    <li class="nav-item">
-                        <a class="nav-link" href="about.html"> {{Session::get('user')['name']}} </a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/user_logout">Logout <span class="sr-only">(current)</span></a>
-                    </li>
-                    @else
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Userloginshow"> Login </a>
-                    </li>
-                    @endif -->
-
         </nav>
     </div>
 </header>
-<!-- end header section -->
-<!-- slider section -->
 
-<!-- end slider section -->
 </div>
 
-<!-- shop section -->
-
-<!-- end shop section -->
-
-<!-- about section -->
-
-<!-- end about section -->
-
-<!-- feature section -->
-
-<!-- end feature section -->
-
-<!-- contact section -->
-
-
-<!-- <div class="col-md-6">
-        <div class="img-box">
-            <img src="http://localhost/Product_show/Modules/UserShow/Resources/assets/images/contact-img.jpg" alt="">
-        </div>
-    </div> -->
 </div>
 </div>
 </section>

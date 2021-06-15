@@ -14,7 +14,7 @@
 Route::prefix('sellershow')->group(function() {
     Route::get('/', 'SellerShowController@index');
 });
-Route::get('/','SellerController@test');
+Route::get('/Sellerlogin','SellerController@test');
 Route::get('/seller_header','SellerController@seller_header');
 Route::post('/Sellerlogin','SellerController@Sellerlogin');
 Route::post('/product_upload','SellerController@product_upload');

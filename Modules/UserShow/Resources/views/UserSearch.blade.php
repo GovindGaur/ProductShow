@@ -15,7 +15,6 @@
                     <h5>{{$item->product_price}}</h5>
                     <p>{{$item->product_desc}}</p>
                 </div>
-
             </div>
             @endforeach
 

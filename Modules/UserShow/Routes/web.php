@@ -15,7 +15,7 @@ Route::prefix('usershow')->group(function() {
     Route::get('/', 'UserShowController@index');
 });
 Route::view('Userloginshow','usershow::User_login');
-Route::view('UserHeader','usershow::UserDashboard');
+Route::view('/','usershow::UserDashboard');
 Route::post('Userlogin','UserController@Userlogin');
 Route::get('FetchAllProduct','UserController@FetchAllProduct');
 Route::get('/user_logout', function () {

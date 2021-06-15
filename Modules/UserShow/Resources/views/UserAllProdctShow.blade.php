@@ -11,8 +11,10 @@
                 <div class="box">
                     <a href="">
                         <div class="img-box">
-                            <img src="http://localhost/product_show/storage/app/public/SellerProductImages/{{$UserItem->product_image}}"
-                                alt="">
+                            <?php 
+                            $image_file_path = env('IMAGE_PATH');
+                            ?>
+                            <img src="{{$image_file_path}}/{{$UserItem->product_image}}" alt="">
                         </div>
                         <div class="detail-box">
                             <h6>
@@ -25,9 +27,8 @@
                                 </span>
                             </h6>
                         </div>
-                        <a href="/initiate?p={{$UserItem->product_price}}"><button class="btn btn-success" style="
-    margin-left: 82px;
-">Buy
+                        <a href="/initiate?p={{$UserItem->product_price}}"><button class="btn btn-success"
+                                style="margin-left: 82px;">Buy
                             </button></a>
                         <!-- <div class="new">
                             <span>
