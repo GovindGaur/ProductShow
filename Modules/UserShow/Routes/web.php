@@ -28,4 +28,4 @@ Route::get('/initiate','Paytemcontroller@initiate')->name('initiate.payment');
 Route::post('/payment','Paytemcontroller@pay')->name('make.payment');
 Route::post('/payment/status', 'Paytemcontroller@paymentCallback')->name('status');
 Route::get('/FetchmMbileData','UserController@FetchmMbileData');
-Route::get('/search','UserController@search');
+Route::Post('/search','UserController@search');

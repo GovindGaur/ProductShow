@@ -1,18 +1,24 @@
 <!-- bootstrap core css -->
-<link rel="stylesheet" type="text/css"
-    href="http://localhost/Product_show/Modules/UserShow/Resources/assets/css/bootstrap.css" />
+
+<!-- <link rel="stylesheet" type="text/css"
+    href="http://localhost/Product_show/Modules/UserShow/Resources/assets/css/bootstrap.css" /> -->
+<link rel="stylesheet" type="text/css" href="{{ Module::asset('UserShow:css/bootstrap.css') }}" />
+
 <!--owl slider stylesheet -->
 <link rel="stylesheet" type="text/css"
     href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
 
 <!-- font awesome style -->
-<link href="http://localhost/Product_show/Modules/UserShow/Resources/assets/css/font-awesome.min.css"
-    rel="stylesheet" />
+<!-- <link href="http://localhost/Product_show/Modules/UserShow/Resources/assets/css/font-awesome.min.css"
+    rel="stylesheet" /> -->
+<link href="{{ Module::asset('UserShow:css/font-awesome.min.css') }}" rel="stylesheet" />
 
 <!-- Custom styles for this template -->
-<link href="http://localhost/Product_show/Modules/UserShow/Resources/assets/css/style.css" rel="stylesheet" />
+<!-- <link href="http://localhost/Product_show/Modules/UserShow/Resources/assets/css/style.css" rel="stylesheet" /> -->
+<!-- <link href="http://localhost/Product_show/Modules/UserShow/Resources/assets/css/style.css" rel="stylesheet" /> -->
+<link href="{{ Module::asset('UserShow:css/style.css') }}" rel="stylesheet" />
 <!-- responsive style -->
-<link href="http://localhost/Product_show/Modules/UserShow/Resources/assets/css/responsive.css" rel="stylesheet" />
+<link href="{{ Module::asset('UserShow:css/responsive.css') }}" rel="stylesheet" />
 
 <!-- header section strats -->
 <header class="header_section sticky-top" style="background-color: ghostwhite;">
@@ -24,12 +30,13 @@
                 </span>
             </a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <form action="/search" class="navbar-form navbar-left">
+                <!-- <form action="/search" method="Post" class="navbar-form navbar-left">
+                    @csrf
                     <div class="form-group">
                         <input type="text" name="search" class="form-control search-box" placeholder="Search">
                     </div>
                     <button type="submit" class="btn btn-default">Search</button>
-                </form>
+                </form> -->
                 <ul class="navbar-nav">
 
                     <li class="nav-item active">
@@ -57,7 +64,12 @@
                         </div>
                     </li>
 
-
+                    <form action="/search" method="Post" class="form-inline my-2 my-lg-0">
+                        @csrf
+                        <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search"
+                            aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
                 </ul>
                 @if(Session()->has('user'))
                 <div class="user_option-box">

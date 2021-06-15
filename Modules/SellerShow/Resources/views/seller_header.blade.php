@@ -10,10 +10,14 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
-    <link rel="stylesheet"
-        href="http://localhost/product_show/Modules/SellerShow/Resources/assets/plugins/fontawesome-free/css/all.min.css">
+
+    <!-- <link rel="stylesheet"
+        href="http://localhost/product_show/Modules/SellerShow/Resources/assets/plugins/fontawesome-free/css/all.min.css"> -->
+    <link rel="stylesheet" href="{{ Module::asset('SellerShow:plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Theme style -->
-    <link rel="stylesheet" href="http://localhost/product_show/Modules/SellerShow/Resources/assets/css/adminlte.css">
+    <!-- <link rel="stylesheet" href="http://localhost/product_show/Modules/SellerShow/Resources/assets/css/adminlte.css"> -->
+
+    <link rel="stylesheet" href="{{ Module::asset('SellerShow:css/adminlte.css') }}">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <style>
     .color-palette {
@@ -225,7 +229,9 @@
                 <!-- Sidebar user (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="http://localhost/product_show/Modules/SellerShow/Resources/assets/img/user2-160x160.jpg"
+                        <!-- <img src="http://localhost/product_show/Modules/SellerShow/Resources/assets/img/user2-160x160.jpg"
+                            class="img-circle elevation-2" alt="User Image"> -->
+                        <img src="{{ Module::asset('SellerShow:img/user2-160x160.jpg') }}"
                             class="img-circle elevation-2" alt="User Image">
                     </div>
                     @if(Session()->has('seller'))
@@ -335,16 +341,23 @@
         <!-- ./wrapper -->
 
         <!-- jQuery -->
-        <script src="http://localhost/product_show/Modules/SellerShow/Resources/assets/plugins/jquery/jquery.min.js">
+        <!-- <script src="http://localhost/product_show/Modules/SellerShow/Resources/assets/plugins/jquery/jquery.min.js">
+        </script> -->
+        <script src="{{ Module::asset('SellerShow:plugins/jquery/jquery.min.js') }}">
         </script>
         <!-- Bootstrap 4 -->
-        <script
+        <!-- <script
             src="http://localhost/product_show/Modules/SellerShow/Resources/assets/plugins/bootstrap/js/bootstrap.bundle.min.js">
+        </script> -->
+        <script src="{{ Module::asset('SellerShow:plugins/bootstrap/js/bootstrap.bundle.min.js') }}">
         </script>
         <!-- AdminLTE App -->
-        <script src="http://localhost/product_show/Modules/SellerShow/Resources/assets/js/adminlte.min.js"></script>
+        <!-- <script src="http://localhost/product_show/Modules/SellerShow/Resources/assets/js/adminlte.min.js"></script> -->
+        <script src="{{ Module::asset('SellerShow:js/adminlte.min.js') }}"></script>
         <!-- AdminLTE for demo purposes -->
-        <script src="http://localhost/product_show/Modules/SellerShow/Resources/assets/js/demo.js"></script>
+        <!-- <script src="http://localhost/product_show/Modules/SellerShow/Resources/assets/js/demo.js"></script> -->
+        <script src="{{ Module::asset('SellerShow:js/demo.js') }}"></script>
+
 </body>
 
 </html>
