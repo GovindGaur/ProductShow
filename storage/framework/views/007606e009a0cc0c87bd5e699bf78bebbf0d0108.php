@@ -1,7 +1,12 @@
-<!-- bootstrap core css -->
+<?php
+use  Modules\UserShow\Http\Controllers\UserController;
+$total_cart = 0;
+if(Session::has('user'))
+{
+    $total_cart = UserController::cartItem();
+}
 
-<!-- <link rel="stylesheet" type="text/css"
-    href="http://localhost/Product_show/Modules/UserShow/Resources/assets/css/bootstrap.css" /> -->
+?>
 <link rel="stylesheet" type="text/css" href="<?php echo e(Module::asset('UserShow:css/bootstrap.css')); ?>" />
 
 <!--owl slider stylesheet -->
@@ -30,29 +35,22 @@
                 </span>
             </a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <!-- <form action="/search" method="Post" class="navbar-form navbar-left">
-                    <?php echo csrf_field(); ?>
-                    <div class="form-group">
-                        <input type="text" name="search" class="form-control search-box" placeholder="Search">
-                    </div>
-                    <button type="submit" class="btn btn-default">Search</button>
-                </form> -->
+             
                 <ul class="navbar-nav">
-
                     <li class="nav-item active">
-                        <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="watches.html"> Watches </a>
+                        <a class="nav-link" href="/"> Watches </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/FetchAllProduct"> About </a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="/FetchAllProduct">Show Product</a>
-                    </li>
+                    </li> -->
 
-                    <li class="nav-item dropdown">
+                    <!-- <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
                             Product Categery
@@ -62,7 +60,7 @@
                             <a class="dropdown-item" href="#">Another action</a>
                             <a class="dropdown-item" href="#">Something else here</a>
                         </div>
-                    </li>
+                    </li> -->
 
                     <form action="/search" method="Post" class="form-inline my-2 my-lg-0">
                         <?php echo csrf_field(); ?>
@@ -74,9 +72,7 @@
                     </form>
 
                     <div class="user_option-box">
-                        <a href="">
-                            <i class="fa fa-cart-plus" aria-hidden="true" style="margin-left: 73px;"></i>
-                        </a>
+                      
                     </div>
                 </ul>
                 <?php if(Session()->has('user')): ?>
@@ -91,21 +87,24 @@
                         <!-- <i class="fa fa-cart-plus" aria-hidden="true"></i> -->
                     </a>
                     <?php else: ?>
-                    <a href="Userloginshow">
-                        <i class="fa fa-user" aria-hidden="true"></i>
+                    <a href="/Userloginshow">
+                        <i class="fa fa-user" aria-hidden="true">Login</i>
                     </a>
                     <?php endif; ?>
+                    <a href="/CartList">
+                            <i class="fa fa-cart-plus"  aria-hidden="true" style="margin-left: 73px;"><?php echo $total_cart?></i>
+                    </a>
                 </div>
             </div>
         </nav>
     </div>
 </header>
 
-</div>
+<!-- </div> -->
 
+<!-- </div>
 </div>
-</div>
-</section>
+</section> -->
 
 <!-- end contact section -->
 

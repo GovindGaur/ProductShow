@@ -1,3 +1,4 @@
+
 @extends('usershow::layouts.master')
 @section('content')
 <section class="slider_section ">
@@ -93,6 +94,119 @@
             <li data-target="#customCarousel1" data-slide-to="1"></li>
             <li data-target="#customCarousel1" data-slide-to="2"></li>
         </ol>
+    </div>
+
+</section>
+<section class="shop_section layout_padding">
+    <div class="container">
+    <div class="heading_container heading_center">
+            <h2>
+                Latest Product
+            </h2>
+        </div>
+        <div class="row">
+            
+            @foreach($UserProduct as $UserItem)
+           
+            <div class="col-sm-6 col-xl-3">
+            <form method="Post" action="/addToCart">
+                @csrf
+            <input type="hidden" name="product_id" value=" {{$UserItem->id}}" >
+                <div class="box">
+                    <a href="">
+                        <div class="img-box">
+                            <?php 
+                            $image_file_path = env('IMAGE_PATH');
+                            ?>
+                            <img src="{{$image_file_path}}/{{$UserItem->product_image}}" alt="">
+                        </div>
+                        <div class="detail-box">
+                            <h6>
+                                {{$UserItem->product_name}}
+                            </h6>
+                            <h6>
+                                Price:
+                                <span>
+                                    {{$UserItem->product_price}}
+                                </span>
+                            </h6>
+                            <div class="new">
+                            <span>
+                                New
+                            </span>
+                        </div>
+                        </div>
+                        <a href="/initiate?p={{$UserItem->product_price}}"><button class="btn btn-success">Buy
+                            </button></a>
+                            <button class="btn btn-success" type="submit" style="margin-left: 52px;">Add To Cart
+                            </button>
+                    </a>
+                </div>
+            </div>
+            </form>
+            @endforeach
+        </div>
+        <div class="btn-box">
+            <a href="/FetchAllProduct">
+                View All
+            </a>
+        </div>
+    </div>
+</section>
+
+
+<!-- Latest Mobile -->
+
+<hr>
+<section class="shop_section layout_padding">
+    <div class="container">
+    <div class="heading_container heading_center">
+            <h2>
+                Latest Mobile
+            </h2>
+        </div>
+        <div class="row">
+            @foreach($UserProductMobile as $UserItem)
+            <div class="col-sm-6 col-xl-3">
+                <div class="box">
+                    <a href="">
+                        <div class="img-box">
+                            <?php 
+                            $image_file_path = env('IMAGE_PATH');
+                            ?>
+                            <img src="{{$image_file_path}}/{{$UserItem->product_image}}" alt="">
+                        </div>
+                        <div class="detail-box">
+                            <h6>
+                                {{$UserItem->product_name}}
+                            </h6>
+                            <h6>
+                                Price:
+                                <span>
+                                    {{$UserItem->product_price}}
+                                </span>
+                            </h6>
+                            <div class="new">
+                            <span>
+                                New
+                            </span>
+                        </div>
+                        </div>
+                        <a href="/initiate?p={{$UserItem->product_price}}"><button class="btn btn-success"
+                                style="margin-left: 82px;">Buy
+                            </button></a>
+
+                    </a>
+                </div>
+            </div>
+
+            @endforeach
+        </div>
+        <div class="btn-box">
+            <a href="/FetchmMbileData">
+                View All
+            </a>
+        </div>
     </div>
 
 </section>

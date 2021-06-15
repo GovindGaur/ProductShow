@@ -20,7 +20,7 @@
                     <input type="submit" name="" value="Login" href="#">
                     <!-- <button type="submit" class="btn btn-primary">Login</button>
                       > -->
-                    <a href="/seller_register">Sign Up</a>
+                    <a href="/Useregister">Sign Up</a>
                     <div class="col-md-12">
                         <ul class="social-network social-circle">
                             <li><a href="#" class="icoFacebook" title="Facebook"><i class="fab fa-facebook-f"></i></a>

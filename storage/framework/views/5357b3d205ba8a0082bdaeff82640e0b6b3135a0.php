@@ -1,26 +1,43 @@
 <?php $__env->startSection('content'); ?>
-<div class="container custom-product">
-    <div class="col-sm-4">
-        <a href="#">Filter</a>
-    </div>
-    <div class="col-sm-4">
-        <div class="trending-wrapper">
-            <h2>Result for Product</h2>
-            <?php $__currentLoopData = $product; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
-            <div class="search-item">
-                <div class="">
-                    <h2><?php echo e($item->product_name); ?></h2>
-                    <h5><?php echo e($item->product_price); ?></h5>
-                    <p><?php echo e($item->product_desc); ?></p>
+<section class="shop_section layout_padding">
+    <div class="container">
+        <div class="row">
+            <?php $__currentLoopData = $product; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <div class="col-sm-6 col-xl-3">
+                <div class="box">
+                    <a href="">
+                        <div class="img-box">
+                            <?php 
+                            $image_file_path = env('IMAGE_PATH');
+                            ?>
+                            <img src="<?php echo e($image_file_path); ?>/<?php echo e($item->product_image); ?>" alt="">
+                        </div>
+                        <div class="detail-box">
+                            <h6>
+                                <?php echo e($item->product_name); ?>
+
+                            </h6>
+                            <h6>
+                                Price:
+                                <span>
+                                    <?php echo e($item->product_price); ?>
+
+                                </span>
+                            </h6>
+                        </div>
+                        <a href="/initiate?p=<?php echo e($item->product_price); ?>"><button class="btn btn-success"
+                                style="margin-left: 82px;">Buy
+                            </button></a>
+
+                    </a>
                 </div>
             </div>
+
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
-
         </div>
     </div>
+</section>
 
-</div>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('usershow::layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH G:\xampp\htdocs\Product_show\Modules/UserShow\Resources/views/UserSearch.blade.php ENDPATH**/ ?>
