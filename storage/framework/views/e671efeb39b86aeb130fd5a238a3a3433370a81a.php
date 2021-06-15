@@ -1,0 +1,1 @@
+<h2>Govind</h2><?php /**PATH G:\xampp\htdocs\Product_show\Modules/SellerShow\Resources/views/hello.blade.php ENDPATH**/ ?>

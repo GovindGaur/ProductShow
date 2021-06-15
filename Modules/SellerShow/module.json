@@ -1,0 +1,13 @@
+{
+    "name": "SellerShow",
+    "alias": "sellershow",
+    "description": "",
+    "keywords": [],
+    "order": 0,
+    "providers": [
+        "Modules\\SellerShow\\Providers\\SellerShowServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

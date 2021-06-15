@@ -1,0 +1,1 @@
+<?php /**PATH G:\xampp\htdocs\Product_show\Modules/UserShow\Resources/views/user_footer.blade.php ENDPATH**/ ?>

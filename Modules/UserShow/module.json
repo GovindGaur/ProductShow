@@ -1,0 +1,13 @@
+{
+    "name": "UserShow",
+    "alias": "usershow",
+    "description": "",
+    "keywords": [],
+    "order": 0,
+    "providers": [
+        "Modules\\UserShow\\Providers\\UserShowServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

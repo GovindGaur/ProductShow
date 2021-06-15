@@ -1,0 +1,8 @@
+{
+    "User": true,
+    "Seller": true,
+    "UserShow": true,
+    "SellerShow": true,
+    "Controller": true,
+    "UserController": true
+}
