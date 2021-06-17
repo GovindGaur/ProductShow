@@ -41,10 +41,10 @@ if(Session::has('user'))
                         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/"> Watches </a>
+                        <a class="nav-link" href="#"> Watches </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/FetchAllProduct"> About </a>
+                        <a class="nav-link" href="#"> About </a>
                     </li>
                     <!-- <li class="nav-item">
                         <a class="nav-link" href="/FetchAllProduct">Show Product</a>

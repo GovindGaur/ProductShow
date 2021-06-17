@@ -40,18 +40,6 @@
         </div>
     </div>
 </section>
-<!-- </div> -->
-
-
-<!-- <div class="btn-box">
-            <a href="">
-                View All
-            </a>
-        </div> -->
-<!-- </div>
-</section> -->
-
-
 
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('usershow::layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH G:\xampp\htdocs\Product_show\Modules/UserShow\Resources/views/UserAllProdctShow.blade.php ENDPATH**/ ?>
