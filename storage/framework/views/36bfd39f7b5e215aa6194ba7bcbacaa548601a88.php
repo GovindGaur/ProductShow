@@ -54,9 +54,10 @@
                     <label for="">Product Categery</label>
                     <select value="" name="productCategery" class="form-control" style="width: 500px;">
                         <option class='form-control' name="" id="" value="Mobile">Mobile</option>
+                        <option class='form-control' name="" id="">Electronics</option>
+                        <option class='form-control' name="" id="">Electricity</option>
                         <option class='form-control' name="" id="">Cell Phones & Accessories</option>
                         <option class='form-control' name="" id="">Clothing, Shoes and Jewelry</option>
-                        <option class='form-control' name="" id="">Electronics</option>
                         <option class='form-control' name="" id="">Movies & TV</option>
                         <option class='form-control' name="" id="">Toys & Games </option>
                     </select>

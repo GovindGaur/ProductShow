@@ -3,6 +3,7 @@
 <section class="shop_section layout_padding">
     <div class="container">
         <div class="row">
+            <?php if(count($CartList)>0){?>
             <?php $__currentLoopData = $CartList; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $CartItem): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <div class="col-sm-6 col-xl-3">
                 <div class="box">
@@ -26,16 +27,32 @@
                                 </span>
                             </h6>
                         </div>
-                        <a href="/initiate?p=<?php echo e($CartItem->product_price); ?>"><button class="btn btn-success"
+                        <!-- <a href="/initiate?p=<?php echo e($CartItem->product_price); ?>"><button class="btn btn-success"
                                 style="margin-left: 82px;">Buy
-                            </button></a>
+                            </button></a> -->
+                        <a href="/RemoveCart/<?php echo e($CartItem->cart_id); ?>"><img
+                                src="<?php echo e(URL::to('/')); ?>/images/remove-from-cart-button.jpg" style="margin-left: 20px;"
+                                alt=""></a>
+
+                        <!--  -->
                 </div>
-                <a href="/RemoveCart/<?php echo e($CartItem->cart_id); ?>"><button class="btn btn-success"
-                                style="margin-left: 82px;">RemoveCart
-                            </button>
+
+                <a href="/initiate?p=<?php echo e($CartItem->product_price); ?>"><img src="<?php echo e(URL::to('/')); ?>/images/buy12edit.png"
+                        alt="" style="margin-left: 70px;"></a>
+
+
+                <!-- <a href="/RemoveCart/<?php echo e($CartItem->cart_id); ?>"><button class="btn btn-success"
+                        style="margin-left: 82px;">RemoveCart
+                    </button> -->
             </div>
-            
+
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            <?php } 
+            
+             else{
+            
+                echo "Product Cart Is Empty";
+            }?>
         </div>
     </div>
 </section>

@@ -4,6 +4,7 @@
 <section class="shop_section layout_padding">
     <div class="container">
         <div class="row">
+            <?php if(count($CartList)>0){?>
             @foreach($CartList as $CartItem)
             <div class="col-sm-6 col-xl-3">
                 <div class="box">
@@ -25,16 +26,32 @@
                                 </span>
                             </h6>
                         </div>
-                        <a href="/initiate?p={{$CartItem->product_price}}"><button class="btn btn-success"
+                        <!-- <a href="/initiate?p={{$CartItem->product_price}}"><button class="btn btn-success"
                                 style="margin-left: 82px;">Buy
-                            </button></a>
+                            </button></a> -->
+                        <a href="/RemoveCart/{{$CartItem->cart_id}}"><img
+                                src="{{ URL::to('/') }}/images/remove-from-cart-button.jpg" style="margin-left: 20px;"
+                                alt=""></a>
+
+                        <!--  -->
                 </div>
-                <a href="/RemoveCart/{{$CartItem->cart_id}}"><button class="btn btn-success"
-                                style="margin-left: 82px;">RemoveCart
-                            </button>
+
+                <a href="/initiate?p={{$CartItem->product_price}}"><img src="{{ URL::to('/') }}/images/buy12edit.png"
+                        alt="" style="margin-left: 70px;"></a>
+
+
+                <!-- <a href="/RemoveCart/{{$CartItem->cart_id}}"><button class="btn btn-success"
+                        style="margin-left: 82px;">RemoveCart
+                    </button> -->
             </div>
-            
+
             @endforeach
+            <?php } 
+            
+             else{
+            
+                echo "Product Cart Is Empty";
+            }?>
         </div>
     </div>
 </section>

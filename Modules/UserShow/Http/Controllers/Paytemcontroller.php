@@ -15,10 +15,10 @@ class Paytemcontroller extends Controller
    public function initiate(Request $request)
    {
     //    dd($request->p);
-       $amount = $request->p;
+    if(session()->has('user')){ 
+    $amount = $request->p;
         // dd($amount);
         $data['amount'] = $amount;
-        if(session()->has('user')){
         return view('usershow::paytm',$data);
     }
     else{

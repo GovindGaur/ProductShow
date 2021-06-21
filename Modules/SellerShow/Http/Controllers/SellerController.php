@@ -119,15 +119,21 @@ class SellerController extends Controller
             $req->validate([
                 'file' => 'mimes:jpeg,bmp,png' // Only allow .jpg, .bmp and .png file types.
             ]);
-            if ($req->hasFile('file'))   
-            $req->file->store('public/SellerProductImages'); 
             $SellerProduct = SellerProduct::find($req->id );
+            if ($req->hasFile('file')) {
+                $req->file->store('public/SellerProductImages'); 
+                $SellerProduct->product_image = $req->file->hashName();
+            }  
+           else{
+            $SellerProduct->product_image = $req->hidden_image;
+           }
+           
             $SellerProduct->product_name = $req->productName;    
             $SellerProduct->product_price = $req->productPrice;    
             $SellerProduct->product_desc = $req->product_desc; 
             $SellerProduct->product_categery = $req->productCategery;   
             $SellerProduct->product_sub_categery = $req->productSubCategery; 
-            $SellerProduct->product_image = $req->file->hashName();
+          
             $SellerProduct->update();
             return redirect('/getProduct');
             

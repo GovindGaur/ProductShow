@@ -71,6 +71,7 @@
                     <label for="">Product Image</label>
                     <input type="file" name="file" id="file" class="form-control" style="width: 500px;"
                         value="<?php echo e($Seller_data['product_image']); ?>">
+                    <input type="hidden" name="hidden_image" value="<?php echo e($Seller_data['product_image']); ?>">
                     <!-- <img src="" alt=""> -->
                     <div>
                         <button type="submit" class="btn btn-success">Save</button>

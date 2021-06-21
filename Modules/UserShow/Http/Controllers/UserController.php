@@ -37,24 +37,92 @@ class UserController extends Controller
     }
 
  public function Dashborad(){
-    $UserProduct =DB::table('sellerproduct')->orderBy('id', 'desc')->take(10)->get(); 
-    $UserProductMobile =  DB::table('sellerproduct')->orderBy('id', 'desc')->take(4)->where('product_categery','Mobile')->get(); 
-    return view('usershow::UserDashboard')->with(['UserProduct'=>$UserProduct,'UserProductMobile'=>$UserProductMobile]);
- }
+        $user_id = Session::get('user')['id'];
+        // dd($user_id);
+        $UserProduct = DB::table('sellerproduct')
+        ->leftJoin('cart','sellerproduct.id', 'cart.Product_id')
+        ->select('sellerproduct.*','cart.id as cart_id','cart.user_id as CartUser_id','cart.Product_id as Cart_Product_id')
+        // ->where('user_id', $user_id)
+        ->orderBy('sellerproduct.id', 'desc')->take(8)->get(); 
+
+        $UserProductMobile =  DB::table('sellerproduct')
+        ->leftJoin('cart','sellerproduct.id', 'cart.Product_id')
+        ->select('sellerproduct.*','cart.id as cart_id','cart.Product_id as Cart_Product_id')
+        // ->where('user_id', $user_id)
+        ->orderBy('sellerproduct.id', 'desc')->take(4)->where('product_categery','Mobile')->get(); 
+        
+        $UserProductElectricity =  DB::table('sellerproduct')
+        ->leftJoin('cart','sellerproduct.id', 'cart.Product_id')
+        ->select('sellerproduct.*','cart.id as cart_id','cart.Product_id as Cart_Product_id')
+        // ->where('user_id', $user_id)
+        ->orderBy('sellerproduct.id', 'desc')->take(4)->where('product_categery','Electricity')->get(); 
+        // dd($UserProductElectricity);
+        $UserProductElectronics =  DB::table('sellerproduct')
+        ->leftJoin('cart','sellerproduct.id', 'cart.Product_id')
+        ->select('sellerproduct.*','cart.id as cart_id','cart.Product_id as Cart_Product_id')
+        // ->where('user_id', $user_id)
+        ->orderBy('sellerproduct.id', 'desc')->take(4)->where('product_categery','Electronics')->get(); 
+        // dd($UserProductElectronics);
+        return view('usershow::UserDashboard')->with(['UserProduct'=>$UserProduct,'UserProductMobile'=>$UserProductMobile,'UserProductElectricity'=>$UserProductElectricity,'UserProductElectronics'=>$UserProductElectronics]);
+        // 
+    }
     public function FetchAllProduct(Request $req){
-        $UserProduct_categewr = $req->product_categery;
-        $UserProduct =DB::table('sellerproduct')->orderBy('id', 'desc')->get();
+        $UserProduct = DB::table('sellerproduct')
+        ->leftJoin('cart','sellerproduct.id', 'cart.Product_id')
+        ->select('sellerproduct.*','cart.id as cart_id','cart.user_id as CartUser_id','cart.Product_id as Cart_Product_id')
+        // ->where('user_id', $user_id)
+        ->orderBy('sellerproduct.id', 'desc')->get(); 
         return view('usershow::UserAllProdctShow')->with(['UserProduct'=>$UserProduct]);
         }
 
     public function FetchmMbileData(){
-        $UserProductMobile =  DB::table('sellerproduct')->select('*')->where('product_categery','Mobile')->get();  
+        // $UserProductMobile =  DB::table('sellerproduct')->select('*')->where('product_categery','Mobile')->get();  
+        $UserProductMobile =  DB::table('sellerproduct')
+        ->leftJoin('cart','sellerproduct.id', 'cart.Product_id')
+        ->select('sellerproduct.*','cart.id as cart_id','cart.Product_id as Cart_Product_id')
+        // ->where('user_id', $user_id)
+        ->orderBy('sellerproduct.id', 'desc')->take(4)->where('product_categery','Mobile')->get(); 
         return view('usershow::AllMobileShow')->with(['UserProductMobile'=>$UserProductMobile]);
     }
+
+    public function FetchElectronicsData(){
+        // $UserProductElectronics =  DB::table('sellerproduct')->select('*')->where('product_categery','Electronics')->get();  
+        $UserProductElectronics =  DB::table('sellerproduct')
+        ->leftJoin('cart','sellerproduct.id', 'cart.Product_id')
+        ->select('sellerproduct.*','cart.id as cart_id','cart.Product_id as Cart_Product_id')
+        // ->where('user_id', $user_id)
+        ->orderBy('sellerproduct.id', 'desc')->where('product_categery','Electronics')->get(); 
+        return view('usershow::AllElectronicsShow')->with(['UserProductElectronics'=>$UserProductElectronics]);
+    }
+
+    public function FetchElectricityData(){
+        $UserProductElectricity =  DB::table('sellerproduct')
+        ->leftJoin('cart','sellerproduct.id', 'cart.Product_id')
+        ->select('sellerproduct.*','cart.id as cart_id','cart.Product_id as Cart_Product_id')
+        // ->where('user_id', $user_id)
+        ->orderBy('sellerproduct.id', 'desc')->where('product_categery','Electricity')->get(); 
+        return view('usershow::AllElectricity')->with(['UserProductElectricity'=>$UserProductElectricity]);
+    }
+
     public function search(Request $request)
     {
-        $data = DB::table('sellerproduct')->where('product_name','like','%'.$request->input('search').'%')->get() ;
-        return view('usershow::UserSearch',['product'=>$data]);
+        if(empty($request->input('search')))
+        {
+           return view('usershow::404page');
+            // echo "data not found";
+        }else
+        {
+            $data =  DB::table('sellerproduct')
+            ->leftJoin('cart','sellerproduct.id', 'cart.Product_id')
+            ->select('sellerproduct.*','cart.id as cart_id','cart.Product_id as Cart_Product_id')
+            ->where('product_name','like','%'.$request->input('search').'%')->get();
+            // ->->where('product_categery','Electricity')->get(); 
+            
+            // $data = DB::table('sellerproduct')->where('product_name','like','%'.$request->input('search').'%')->get() ;
+
+            return view('usershow::UserSearch',['product'=>$data]);
+        }
+       
      
     }
 
@@ -64,7 +132,10 @@ class UserController extends Controller
              $cart->user_id = $req->session()->get('user')['id'];
              $cart->product_id = $req->product_id;
              $cart->save();
-            return redirect('/');
+             return json_encode($cart);
+            //  return response()->json($cart->toArray());
+            //  return json_encode(array('statusCode'=>200));
+            // return redirect('/');
         }
         else
         {
@@ -91,7 +162,18 @@ class UserController extends Controller
     public function RemoveCart($id){
         $todo = Cart::find($id);
         $todo->delete();
-        return redirect()->back();       
+        return redirect('/');       
+        }
+
+        public function displayCart(Request $req){
+            $product_id =  $req->product_id;;
+            // $product_id = Session::get('user')['id'];//    dd($product_id);
+            $CartList =  DB::table('sellerproduct')
+            ->join('cart','sellerproduct.id','cart.Product_id')
+            ->where('cart.product_id',$product_id)
+            ->select('sellerproduct.*','cart.id as cart_id')
+            ->get();
+            dd($CartList);
         }
    
 }

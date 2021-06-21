@@ -34,3 +34,6 @@ Route::Post('/search','UserController@search');
 Route::Post('/addToCart','UserController@addToCart');
 Route::get('/CartList','UserController@CartList');
 Route::get('/RemoveCart/{id}','UserController@RemoveCart');
+Route::get('/displayCart','UserController@displayCart');
+Route::get('/FetchElectronicsData','UserController@FetchElectronicsData');
+Route::get('/FetchElectricityData','UserController@FetchElectricityData');
