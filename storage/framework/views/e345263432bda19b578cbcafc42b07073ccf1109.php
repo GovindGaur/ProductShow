@@ -55,7 +55,8 @@
                             </td>
                             <td>
                                 <a href="Selleredit/<?php echo e($SellerItem->id); ?>">Edit</a>
-                                <a href="Sellerdelete/<?php echo e($SellerItem->id); ?>">Delete</a>
+                                <a onclick="return confirm('Are you sure Remove Product.. ?')"
+                                    href="Sellerdelete/<?php echo e($SellerItem->id); ?>">Delete</a>
                             </td>
                         </tr>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

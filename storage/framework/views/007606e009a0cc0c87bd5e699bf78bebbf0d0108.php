@@ -35,7 +35,7 @@ if(Session::has('user'))
                 </span>
             </a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-             
+
                 <ul class="navbar-nav">
                     <li class="nav-item active">
                         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
@@ -72,7 +72,7 @@ if(Session::has('user'))
                     </form>
 
                     <div class="user_option-box">
-                      
+
                     </div>
                 </ul>
                 <?php if(Session()->has('user')): ?>
@@ -92,7 +92,8 @@ if(Session::has('user'))
                     </a>
                     <?php endif; ?>
                     <a href="/CartList">
-                            <i class="fa fa-cart-plus"  aria-hidden="true" style="margin-left: 73px;"><?php echo $total_cart?></i>
+                        <i class="fa fa-cart-plus" aria-hidden="true"
+                            style="margin-left: 73px;"><?php echo $total_cart?></i>
                     </a>
                 </div>
             </div>

@@ -56,7 +56,8 @@
                             </td>
                             <td>
                                 <a href="Selleredit/{{$SellerItem->id}}">Edit</a>
-                                <a href="Sellerdelete/{{$SellerItem->id}}">Delete</a>
+                                <a onclick="return confirm('Are you sure Remove Product.. ?')"
+                                    href="Sellerdelete/{{$SellerItem->id}}">Delete</a>
                             </td>
                         </tr>
                         @endforeach

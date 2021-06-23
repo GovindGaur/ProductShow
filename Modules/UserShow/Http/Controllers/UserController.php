@@ -7,6 +7,7 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\UserShow\Entities\Userlogin;
 use Modules\UserShow\Entities\Cart;
+use Modules\UserShow\Entities\SellerProduct;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -131,9 +132,11 @@ class UserController extends Controller
              $cart = new Cart;
              $cart->user_id = $req->session()->get('user')['id'];
              $cart->product_id = $req->product_id;
+             $cart->quantity = $req->quantity;
              $cart->save();
-             return json_encode($cart);
-            //  return response()->json($cart->toArray());
+            //  return json_encode($cart);
+            //  return response()->json($users_message->toArray());
+             return response()->json($cart->toArray());
             //  return json_encode(array('statusCode'=>200));
             // return redirect('/');
         }
@@ -154,26 +157,42 @@ class UserController extends Controller
         $CartList =  DB::table('cart')
         ->join('sellerproduct','cart.product_id','sellerproduct.id')
         ->where('cart.user_id',$user_id)
-        ->select('sellerproduct.*','cart.id as cart_id')
+        ->select('sellerproduct.*','cart.id as cart_id','cart.quantity as product_quantity')
         ->get();
+        // dd($CartList);
         return view('usershow::UserCartList')->with(['CartList'=>$CartList]);
     }
 
-    public function RemoveCart($id){
-        $todo = Cart::find($id);
-        $todo->delete();
-        return redirect('/');       
+    public function Cartupdate(Request $req){   
+            $cart = Cart::find($req->id);
+            $cart->product_id = $req->product_id;
+            $cart->quantity = $req->quantity;
+            $cart->save();
+            return response()->json ($cart);
+     }
+  
+
+
+
+        public function RemoveCart($id){
+            $todo = Cart::find($id);
+            $todo->delete();
+            return redirect('/');       
         }
 
-        public function displayCart(Request $req){
-            $product_id =  $req->product_id;;
-            // $product_id = Session::get('user')['id'];//    dd($product_id);
-            $CartList =  DB::table('sellerproduct')
-            ->join('cart','sellerproduct.id','cart.Product_id')
-            ->where('cart.product_id',$product_id)
-            ->select('sellerproduct.*','cart.id as cart_id')
-            ->get();
-            dd($CartList);
+        public function ProductDetail($id)
+        {
+            $ProductDetail =  SellerProduct::find($id);
+            // dd($ProductDetail);
+            return view('usershow::ProductDetail',['ProductDetail'=>$ProductDetail]);  
         }
+
+        //  public function addlocalstroage(Request $request) {
+        //     $postdata = $request->getContent();
+        //     $myfile = time().str_random();
+        //     Storage::disk('local')->put($myfile, $postdata);
+        //   }
+
+
    
 }

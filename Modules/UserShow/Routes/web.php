@@ -37,3 +37,6 @@ Route::get('/RemoveCart/{id}','UserController@RemoveCart');
 Route::get('/displayCart','UserController@displayCart');
 Route::get('/FetchElectronicsData','UserController@FetchElectronicsData');
 Route::get('/FetchElectricityData','UserController@FetchElectricityData');
+Route::get('/ProductDetail/{id}','UserController@ProductDetail');
+Route::Post('/Cartupdate','UserController@Cartupdate');
+Route::Post('/addlocalstroage','UserController@addlocalstroage');
