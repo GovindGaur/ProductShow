@@ -1,5 +1,5 @@
 <?php
-
+use  Modules\UserShow\Http\Controllers\RazorypayController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,3 +40,9 @@ Route::get('/FetchElectricityData','UserController@FetchElectricityData');
 Route::get('/ProductDetail/{id}','UserController@ProductDetail');
 Route::Post('/Cartupdate','UserController@Cartupdate');
 Route::Post('/addlocalstroage','UserController@addlocalstroage');
+
+//razorypay
+
+  
+Route::get('razorpay-payment', [RazorypayController::class, 'index']);
+Route::post('razorpay-payment', [RazorypayController::class, 'store'])->name('razorpay.payment.store');

@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class cart extends Model
 {
-    protected $fillable = [];
+    // protected $fillable = [];
     public $table="cart";
 }
