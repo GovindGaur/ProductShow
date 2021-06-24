@@ -53,7 +53,7 @@
                                     <input type="hidden" name="RazoryAmount" id="RazoryAmount" value="<?php echo e($amount); ?>">
                                     <!-- <label for=""></label> -->
                                     <script src="https://checkout.razorpay.com/v1/checkout.js"
-                                        data-key="<?php echo e(env('RAZORPAY_KEY')); ?>" data-amount="<?php echo e($amount * 100); ?>"
+                                        data-key="<?php echo e(env('RAZORPAY_KEY')); ?>" data-amount="<?php echo e($amount); ?>"
                                         data-buttontext="<?php echo e($amount); ?>" data-name="ItSolutionStuff.com"
                                         data-description="Rozerpay"
                                         data-image="https://www.itsolutionstuff.com/frontTheme/images/logo.png"

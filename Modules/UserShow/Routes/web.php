@@ -40,9 +40,12 @@ Route::get('/FetchElectricityData','UserController@FetchElectricityData');
 Route::get('/ProductDetail/{id}','UserController@ProductDetail');
 Route::Post('/Cartupdate','UserController@Cartupdate');
 Route::Post('/addlocalstroage','UserController@addlocalstroage');
-
+Route::Post('getCardItem', 'UserController@getCardItem');
 //razorypay
 
   
 Route::get('razorpay-payment', [RazorypayController::class, 'index']);
 Route::post('razorpay-payment', [RazorypayController::class, 'store'])->name('razorpay.payment.store');
+// Route::view('razorypayreceipt','usershow::razorypayreceipt');
+Route::get('SendMail', [RazorypayController::class, 'SendMail']);
+Route::get('SaveRazorydata', [RazorypayController::class, 'SaveRazorydata']);

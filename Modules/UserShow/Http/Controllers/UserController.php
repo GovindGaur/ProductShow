@@ -163,6 +163,18 @@ class UserController extends Controller
         return view('usershow::UserCartList')->with(['CartList'=>$CartList]);
     }
 
+    public function getCardItem(Request $req){
+        $pIds = $req->product_ids;
+        // dd($pIds);
+        $CartList =  DB::table('sellerproduct')
+        // ->join('sellerproduct','cart.product_id','sellerproduct.id')
+        ->whereIn('sellerproduct.id',$pIds)
+        ->select('sellerproduct.*')
+        ->get();
+        // echo json_encode($CartList);
+        return response()->json ($CartList);
+    }
+
     public function Cartupdate(Request $req){   
             $cart = Cart::find($req->id);
             $cart->product_id = $req->product_id;

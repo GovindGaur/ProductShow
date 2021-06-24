@@ -225,9 +225,12 @@
                     <span id="{{$UserItem->id}}">
                         <?php if(!$UserItem->cart_id || !Session::get('user')['id']){ ?>
                         <!-- <button onclick="addToCart({{$UserItem->id}})"> add to cart</button> -->
-                        <input type="image" value="button" src="{{ URL::to('/') }}/images/addtocart.png"
-                            onclick="addToCart({{$UserItem->id}})" alt="submit Button"
-                            onMouseOver="this.src='{{ URL::to('/') }}/images/addtocart.png'" style="margin-left: 16px;">
+                        <span id="product_store_{{$UserItem->id}}">
+                            <input type="image" value="button" src="{{ URL::to('/') }}/images/addtocart.png"
+                                onclick="addToCart({{$UserItem->id}})" alt="submit Button"
+                                onMouseOver="this.src='{{ URL::to('/') }}/images/addtocart.png'"
+                                style="margin-left: 16px;">
+                        </span>
                         <?php }else{ ?>
                         <a href="CartList" id="CartList">Go To Cart</a>
                         <!-- <div id="gotocart"></div> -->
@@ -303,9 +306,11 @@
                 <span id="{{$UserItem->id}}">
                     <?php if(!$UserItem->cart_id || !Session::get('user')['id']){ ?>
                     <!-- <button onclick="addToCart({{$UserItem->id}})"> add to cart</button> -->
-                    <input type="image" value="button" src="{{ URL::to('/') }}/images/addtocart.png"
-                        onclick="addToCart({{$UserItem->id}})" alt="submit Button"
-                        onMouseOver="this.src='{{ URL::to('/') }}/images/addtocart.png'" style="margin-left: 16px;">
+                    <span id="{{$UserItem->id}}">
+                        <input type="image" value="button" src="{{ URL::to('/') }}/images/addtocart.png"
+                            onclick="addToCart({{$UserItem->id}})" alt="submit Button"
+                            onMouseOver="this.src='{{ URL::to('/') }}/images/addtocart.png'" style="margin-left: 16px;">
+                    </span>
                     <?php }else{ ?>
                     <a href="CartList" id="CartList">Go To Cart</a>
                     <!-- <div id="gotocart"></div> -->
@@ -378,9 +383,12 @@
                     <span id="{{$UserItem->id}}">
                         <?php if(!$UserItem->cart_id || !Session::get('user')['id']){ ?>
                         <!-- <button onclick="addToCart({{$UserItem->id}})"> add to cart</button> -->
-                        <input type="image" value="button" id="click" src="{{ URL::to('/') }}/images/addtocart.png"
-                            onclick="addToCart({{$UserItem->id}})" alt="submit Button"
-                            onMouseOver="this.src='{{ URL::to('/') }}/images/addtocart.png'" style="margin-left: 16px;">
+                        <span id="product_store_{{$UserItem->id}}">
+                            <input type="image" value="button" id="click" src="{{ URL::to('/') }}/images/addtocart.png"
+                                onclick="addToCart({{$UserItem->id}})" alt="submit Button"
+                                onMouseOver="this.src='{{ URL::to('/') }}/images/addtocart.png'"
+                                style="margin-left: 16px;">
+                        </span>
                         <?php }else{ ?>
                         <a href="CartList" id="CartList">Go To Cart</a>
                         <!-- <div id="gotocart"></div> -->
@@ -439,11 +447,13 @@ $(document).ready(function() {
                         // return true;
                         // $('#' + ProductId).html("<a href='/CartList'>Go to cart</a>")
                         console.log(data);
+                        localStorage.clear();
                     }
                 });
+
             }
         })
-        localStorage.clear();
+
     }
 })
 
@@ -471,9 +481,7 @@ function addToCart(ProductId) {
         var getDemoObjectData = localStorage.getItem('demoObject') ? JSON.parse(localStorage.getItem('demoObject')) :
     [];
         if (getDemoObjectData && getDemoObjectData.length) {
-            if (getDemoObjectData.includes(ProductId)) {
-
-            } else {
+            if (getDemoObjectData.includes(ProductId)) {} else {
                 getDemoObjectData.push(ProductId)
             }
         } else {
@@ -481,7 +489,6 @@ function addToCart(ProductId) {
         }
         var demoObject = {
             'ProductId': ProductId,
-
         };
         // save object into local storage with key 'demoObject'
         localStorage.setItem('demoObject', JSON.stringify(getDemoObjectData));
@@ -509,6 +516,5 @@ function addToCart(ProductId) {
     //     return false;
     // }
     // Userloginshow
-
 }
 </script>

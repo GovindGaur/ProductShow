@@ -76,9 +76,9 @@
 @endif
 <section class="shop_section layout_padding">
     <div class="container">
+        <?php if(count($CartList)>0){?>
         <div class="row">
             <input type="hidden" name="product_id1" id="product_id" value="">
-            <?php if(count($CartList)>0){?>
 
             @foreach($CartList as $CartItem)
             <input type="hidden" name="product_id" id="product_id" value="{{$CartItem->id}}">
@@ -132,18 +132,20 @@
             </div>
 
             @endforeach
-            <?php } 
-            
-             else{
-            
-                echo "Product Cart Is Empty";
-            }?>
         </div>
+        <?php } 
+             else{
+                echo "<div class='row' id='empty_cart'>Product Cart Is Empty</div>";
+            }?>
     </div>
 </section>
 
 @endsection
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script>
+let userId = "{{Session::get('user')['id']}}";
+console.log("userId", userId)
+
 function CartUpdate1(ProductId) {
 
     alert(ProductId);
@@ -173,7 +175,73 @@ function CartUpdate(cartid, product_id) {
         }
     });
 }
+let image_file_path = "{{env('IMAGE_PATH')}}"
+$(document).ready(function() {
+    displayCardItem();
+})
 
+function displayCardItem() {
+    let productStoreArr = localStorage.getItem('demoObject') ? JSON.parse(localStorage.getItem('demoObject')) : [];
+    console.log(userId);
+    if (productStoreArr && productStoreArr.length) {
+        let UserId = $('#user_id').val();
+        if (!userId) {
+            $.ajax({
+                url: '/getCardItem',
+                method: 'post',
+                data: {
+                    product_ids: productStoreArr,
+                    "_token": "{{ csrf_token() }}"
+                },
+                success: function(data) {
+                    // return true;
+                    // $('#' + ProductId).html("<a href='/CartList'>Go to cart</a>")
+                    console.log(data);
+                    // localStorage.clear();
+                    if (data && data.length) {
+                        let resObj = "";
+                        data.map((cartObj) => {
+                            resObj = resObj +
+                                `<div class="col-sm-6 col-xl-3"> 
+                                    <div class = "box" >
+                                        <div class = "img-box" >
+                                            <img src =
+                                                "${image_file_path}/${cartObj.product_image}"
+                                            alt = "" />
+                                        </div> 
+                                        <div class = "detail-box" >
+                                            <h6 > ${cartObj.product_name}</h6>
+                                            <h6 > Price:
+                                                <span >${cartObj.product_price}</span>
+                                            </h6>
+                                        </div>
+                                        <button onclick='removeCart(${cartObj.id})'>Remove</button>
+                                    </div>
+                                </div>`
+                        })
+                        $('#empty_cart').html(resObj);
+                    }
+                }
+            });
+
+        }
+
+    }
+}
+
+function removeCart(cardId) {
+    let productStoreArr = localStorage.getItem('demoObject') ? JSON.parse(localStorage.getItem('demoObject')) : [];
+    if (productStoreArr && productStoreArr.length) {
+        if (productStoreArr.includes(cardId)) {
+            var index = productStoreArr.indexOf(cardId);
+            if (index !== -1) {
+                productStoreArr.splice(index, 1);
+                localStorage.setItem('demoObject', JSON.stringify(productStoreArr));
+                displayCardItem();
+            }
+        }
+    }
+}
 
 // Userloginshow
 </script>

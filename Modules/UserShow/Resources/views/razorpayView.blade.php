@@ -51,7 +51,7 @@
                                     <input type="hidden" name="RazoryAmount" id="RazoryAmount" value="{{$amount}}">
                                     <!-- <label for=""></label> -->
                                     <script src="https://checkout.razorpay.com/v1/checkout.js"
-                                        data-key="{{ env('RAZORPAY_KEY') }}" data-amount="{{$amount * 100}}"
+                                        data-key="{{ env('RAZORPAY_KEY') }}" data-amount="{{$amount}}"
                                         data-buttontext="{{$amount}}" data-name="ItSolutionStuff.com"
                                         data-description="Rozerpay"
                                         data-image="https://www.itsolutionstuff.com/frontTheme/images/logo.png"

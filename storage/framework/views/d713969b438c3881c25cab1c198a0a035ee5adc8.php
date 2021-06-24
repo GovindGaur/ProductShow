@@ -228,9 +228,12 @@
                     <span id="<?php echo e($UserItem->id); ?>">
                         <?php if(!$UserItem->cart_id || !Session::get('user')['id']){ ?>
                         <!-- <button onclick="addToCart(<?php echo e($UserItem->id); ?>)"> add to cart</button> -->
-                        <input type="image" value="button" src="<?php echo e(URL::to('/')); ?>/images/addtocart.png"
-                            onclick="addToCart(<?php echo e($UserItem->id); ?>)" alt="submit Button"
-                            onMouseOver="this.src='<?php echo e(URL::to('/')); ?>/images/addtocart.png'" style="margin-left: 16px;">
+                        <span id="product_store_<?php echo e($UserItem->id); ?>">
+                            <input type="image" value="button" src="<?php echo e(URL::to('/')); ?>/images/addtocart.png"
+                                onclick="addToCart(<?php echo e($UserItem->id); ?>)" alt="submit Button"
+                                onMouseOver="this.src='<?php echo e(URL::to('/')); ?>/images/addtocart.png'"
+                                style="margin-left: 16px;">
+                        </span>
                         <?php }else{ ?>
                         <a href="CartList" id="CartList">Go To Cart</a>
                         <!-- <div id="gotocart"></div> -->
@@ -308,9 +311,11 @@
                 <span id="<?php echo e($UserItem->id); ?>">
                     <?php if(!$UserItem->cart_id || !Session::get('user')['id']){ ?>
                     <!-- <button onclick="addToCart(<?php echo e($UserItem->id); ?>)"> add to cart</button> -->
-                    <input type="image" value="button" src="<?php echo e(URL::to('/')); ?>/images/addtocart.png"
-                        onclick="addToCart(<?php echo e($UserItem->id); ?>)" alt="submit Button"
-                        onMouseOver="this.src='<?php echo e(URL::to('/')); ?>/images/addtocart.png'" style="margin-left: 16px;">
+                    <span id="<?php echo e($UserItem->id); ?>">
+                        <input type="image" value="button" src="<?php echo e(URL::to('/')); ?>/images/addtocart.png"
+                            onclick="addToCart(<?php echo e($UserItem->id); ?>)" alt="submit Button"
+                            onMouseOver="this.src='<?php echo e(URL::to('/')); ?>/images/addtocart.png'" style="margin-left: 16px;">
+                    </span>
                     <?php }else{ ?>
                     <a href="CartList" id="CartList">Go To Cart</a>
                     <!-- <div id="gotocart"></div> -->
@@ -385,9 +390,12 @@
                     <span id="<?php echo e($UserItem->id); ?>">
                         <?php if(!$UserItem->cart_id || !Session::get('user')['id']){ ?>
                         <!-- <button onclick="addToCart(<?php echo e($UserItem->id); ?>)"> add to cart</button> -->
-                        <input type="image" value="button" id="click" src="<?php echo e(URL::to('/')); ?>/images/addtocart.png"
-                            onclick="addToCart(<?php echo e($UserItem->id); ?>)" alt="submit Button"
-                            onMouseOver="this.src='<?php echo e(URL::to('/')); ?>/images/addtocart.png'" style="margin-left: 16px;">
+                        <span id="product_store_<?php echo e($UserItem->id); ?>">
+                            <input type="image" value="button" id="click" src="<?php echo e(URL::to('/')); ?>/images/addtocart.png"
+                                onclick="addToCart(<?php echo e($UserItem->id); ?>)" alt="submit Button"
+                                onMouseOver="this.src='<?php echo e(URL::to('/')); ?>/images/addtocart.png'"
+                                style="margin-left: 16px;">
+                        </span>
                         <?php }else{ ?>
                         <a href="CartList" id="CartList">Go To Cart</a>
                         <!-- <div id="gotocart"></div> -->
@@ -446,11 +454,13 @@ $(document).ready(function() {
                         // return true;
                         // $('#' + ProductId).html("<a href='/CartList'>Go to cart</a>")
                         console.log(data);
+                        localStorage.clear();
                     }
                 });
+
             }
         })
-        localStorage.clear();
+
     }
 })
 
@@ -478,9 +488,7 @@ function addToCart(ProductId) {
         var getDemoObjectData = localStorage.getItem('demoObject') ? JSON.parse(localStorage.getItem('demoObject')) :
     [];
         if (getDemoObjectData && getDemoObjectData.length) {
-            if (getDemoObjectData.includes(ProductId)) {
-
-            } else {
+            if (getDemoObjectData.includes(ProductId)) {} else {
                 getDemoObjectData.push(ProductId)
             }
         } else {
@@ -488,7 +496,6 @@ function addToCart(ProductId) {
         }
         var demoObject = {
             'ProductId': ProductId,
-
         };
         // save object into local storage with key 'demoObject'
         localStorage.setItem('demoObject', JSON.stringify(getDemoObjectData));
@@ -516,7 +523,6 @@ function addToCart(ProductId) {
     //     return false;
     // }
     // Userloginshow
-
 }
 </script>
 <?php echo $__env->make('usershow::layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH G:\xampp\htdocs\Product_show\Modules/UserShow\Resources/views/UserDashboard.blade.php ENDPATH**/ ?>
